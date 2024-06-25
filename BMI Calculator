@@ -1,6 +1,7 @@
 import tkinter
 from tkinter import ttk
 from tkinter import messagebox
+from collections import Counter
 from matplotlib import pyplot as plt
 
 file='BMIcalculation.txt'
