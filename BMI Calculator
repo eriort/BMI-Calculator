@@ -91,7 +91,7 @@ savebtn.grid(row=3,column=0)
 savebtn = tkinter.Button(fname, text='Save', command=save_result)
 savebtn.grid(row=3, column=0)
 
-showgraphbtn = tkinter.Button(fname, text='Show Graph', command=load_value)
+showgraphbtn = tkinter.Button(fname, text='Show Graph', command=show_graph)
 showgraphbtn.grid(row=3, column=1)
 
 
