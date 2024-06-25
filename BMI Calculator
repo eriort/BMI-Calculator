@@ -1,0 +1,78 @@
+import tkinter
+from tkinter import ttk
+from tkinter import messagebox
+from matplotlib import pyplot as plt
+
+file='BMIcalculation.txt'
+
+def save_result():
+    global values
+    with open('BMIcalculation.txt','w') as file1:
+        file1.write(values+'\n')
+def load_value():
+    with open('BMIcalculation.txt', 'r') as file1:
+        read=file1.read()
+        messagebox.showwarning(read)
+
+def calculate_bmi():
+    global values
+    name=nameentry.get()
+    age=agespinbox.get()
+    weight=weightentry.get()
+    height=heightentry.get()
+    bmi = float(weight) / (float(height) ** 2)
+    if bmi < 18.5:
+        values='Underweight'
+        messagebox.showwarning('value','underweight')
+    elif bmi < 25:
+        values = 'Normal'
+        messagebox.showwarning('value', 'Normal')
+    elif bmi < 29.9:
+        values = 'Overweight'
+        messagebox.showwarning('value', 'Overweight')
+    else:
+        values = 'Obese'
+        messagebox.showwarning('value', 'Obese')
+
+values=''
+window = tkinter.Tk()
+window.title('BMI Calculator')
+
+fname = tkinter.Frame(window)
+fname.pack()
+
+bmicalculatorframe = tkinter.LabelFrame(fname, text='User Details')
+bmicalculatorframe.grid(row=0, column=0)
+
+namelabel = tkinter.Label(bmicalculatorframe, text='Name')
+namelabel.grid(row=0, column=0)
+nameentry = tkinter.Entry(bmicalculatorframe)
+nameentry.grid(row=0, column=1)
+
+agelabel = tkinter.Label(bmicalculatorframe, text='Age')
+agespinbox=tkinter.Spinbox(bmicalculatorframe,from_=15,to=75)
+agelabel.grid(row=0, column=2)
+agespinbox.grid(row=0,column=3)
+
+weightlabel = tkinter.Label(bmicalculatorframe, text='Weight(Kg)')
+weightlabel.grid(row=1, column=0)
+weightentry = tkinter.Entry(bmicalculatorframe)
+weightentry.grid(row=1, column=1)
+
+heightlabel = tkinter.Label(bmicalculatorframe, text='Height(cm)')
+heightlabel.grid(row=1, column=2)
+heightentry = tkinter.Entry(bmicalculatorframe)
+heightentry.grid(row=1, column=3)
+
+calculatebtn=tkinter.Button(fname,text='Calculate',command=calculate_bmi)
+calculatebtn.grid(row=2,column=0)
+
+savebtn=tkinter.Button(fname,text='Save',command=save_result)
+savebtn.grid(row=3,column=0)
+
+savebtn = tkinter.Button(fname, text='Save', command=save_result)
+savebtn.grid(row=3, column=0)
+load_value
+
+
+window.mainloop()
